@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowing Card UI Replica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <!-- Custom Cursor Element -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <h1><span class="title-red">Glowing</span> <span class="title-green">Card</span></h1>
+
+    <div class="cards-container">
+        <!-- Left Card: Red -->
+        <div class="card red" id="card-red">
+            <div class="card-header-texture">
+                <canvas id="canvas-red"></canvas>
+            </div>
+            <div class="date-badge">
+                <span class="month">Nov</span>
+                <span class="day">30</span>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title">Card Title</h2>
+                <p class="card-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Facere sequi illo nam repudiandae tempore
+                    quaerat veritatis doloremque omnis molestias id.
+                </p>
+                <a href="#" class="see-more">See More</a>
+            </div>
+        </div>
+
+        <!-- Right Card: Green -->
+        <div class="card green" id="card-green">
+            <div class="card-header-texture">
+                <canvas id="canvas-green"></canvas>
+            </div>
+            <div class="date-badge">
+                <span class="month">Dec</span>
+                <span class="day">31</span>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title">Card Title</h2>
+                <p class="card-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Facere sequi illo nam repudiandae tempore
+                    quaerat veritatis doloremque omnis molestias id.
+                </p>
+                <a href="#" class="see-more">See More</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/script.js"> </script>
+</body>
+
+</html>

@@ -1,0 +1,257 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-color: #0a0a0a;
+    --card-bg: #151515;
+    --text-white: #ffffff;
+    --text-grey: #b0b0b0;
+    --red-primary: #ff3b3b;
+    --red-glow: rgba(255, 59, 59, 0.5);
+    --red-bg-gradient: linear-gradient(180deg, rgba(255, 59, 59, 0.15) 0%, rgba(21, 21, 21, 0) 50%);
+    --green-primary: #00d26a;
+    --green-glow: rgba(0, 210, 106, 0.5);
+    --green-bg-gradient: linear-gradient(180deg, rgba(0, 210, 106, 0.15) 0%, rgba(21, 21, 21, 0) 50%);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: var(--text-white);
+    overflow-x: hidden;
+    cursor: none;
+    /* Hide default cursor */
+}
+
+/* --- Custom Cursor --- */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    mix-blend-mode: difference;
+}
+
+.custom-cursor.active {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: transparent;
+}
+
+h1 {
+    margin-bottom: 3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.title-red {
+    color: #d13a3a;
+}
+
+.title-green {
+    color: #2e8b57;
+}
+
+.cards-container {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    perspective: 1000px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.card {
+    position: relative;
+    width: 300px;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    /* Removed generic transition for transform to allow smooth JS movement */
+    transition: box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transform-style: preserve-3d;
+}
+
+.card-header-texture {
+    height: 140px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.card canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.date-badge {
+    position: absolute;
+    top: 100px;
+    left: 25px;
+    width: 60px;
+    height: 60px;
+    background-color: #000;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.date-badge .month {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-white);
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.date-badge .day {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.card-body {
+    padding: 35px 25px 25px 25px;
+    position: relative;
+    z-index: 2;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-white);
+}
+
+.card-text {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-grey);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.see-more {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    transition: opacity 0.3s;
+}
+
+.see-more:hover {
+    opacity: 0.8;
+}
+
+/* Red Variant */
+.card.red {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.card.red::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: var(--red-bg-gradient);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.card.red .day,
+.card.red .see-more {
+    color: var(--red-primary);
+}
+
+.card.red:hover {
+    box-shadow: 0 10px 40px rgba(255, 59, 59, 0.2);
+}
+
+.card.red .see-more {
+    text-shadow: 0 0 8px rgba(255, 59, 59, 0.6);
+}
+
+/* Green Variant */
+.card.green {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.card.green::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: var(--green-bg-gradient);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.card.green .day,
+.card.green .see-more {
+    color: var(--green-primary);
+}
+
+.card.green:hover {
+    box-shadow: 0 10px 40px rgba(0, 210, 106, 0.2);
+}
+
+.card.green .see-more {
+    text-shadow: 0 0 8px rgba(0, 210, 106, 0.6);
+}
+
+@media (max-width: 700px) {
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    body {
+        cursor: auto;
+    }
+
+    /* Restore cursor on touch devices */
+    .custom-cursor {
+        display: none;
+    }
+}
